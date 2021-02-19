@@ -1,5 +1,9 @@
 import { createAuth } from '@keystone-next/auth';
 import { config, createSchema } from '@keystone-next/keystone/schema';
+import {
+  withItemData,
+  statelessSessions,
+} from '@keystone-next/keystone/session';
 import { User } from './schemas/User';
 import 'dotenv/config';
 
@@ -41,9 +45,12 @@ export default withAuth(
       User,
     }),
     ui: {
-      // TODO: Change this for roles
-      isAccessAllowed: () => true,
+      // Show the UI only for people who pass this test
+      isAccessAllowed: ({ session }) => !!session?.data,
     },
-    // TODO: Add session values here
+    session: withItemData(statelessSessions(sessionConfig), {
+      // GraphQL Query
+      User: 'id',
+    }),
   })
 );

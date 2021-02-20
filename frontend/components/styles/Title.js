@@ -10,7 +10,7 @@ const Title = styled.h3`
     background: var(--dark-orange);
     display: inline;
     line-height: 1.3;
-    font-size: 4rem;
+    font-size: 3rem;
     text-align: center;
     color: white;
     padding: 0 1rem;

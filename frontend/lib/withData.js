@@ -7,7 +7,9 @@ import { endpoint, prodEndpoint } from '../config';
 
 function createClient({ headers, initialState }) {
   return new ApolloClient({
+    // error handling link
     link: ApolloLink.from([
+      // takes in 2 different types of errors
       onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors)
           graphQLErrors.forEach(({ message, locations, path }) =>
@@ -20,9 +22,10 @@ function createClient({ headers, initialState }) {
             `[Network error]: ${networkError}. Backend is unreachable. Is it running?`
           );
       }),
-      // this uses apollo-link-http under the hood, so all the options here come from that package
+      // this uses apollo-link-http under the hood, but layered on additional code that allows us to do file uploads
       createUploadLink({
         uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
+        // whenever it fetches data from GraphQL endpoint it should send cookies
         fetchOptions: {
           credentials: 'include',
         },
@@ -39,6 +42,8 @@ function createClient({ headers, initialState }) {
           },
         },
       },
+      // if there is any intialState, restore it- avoids hitting API twice
+      // apollo takes data from the server and gives it to the hydration on the client
     }).restore(initialState || {}),
   });
 }

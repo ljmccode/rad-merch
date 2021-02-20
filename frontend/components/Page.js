@@ -11,8 +11,14 @@ const GlobalStyles = createGlobalStyle`
     font-style: normal;
   }
   html {
-    --teal: #20c4c4;
-    --red: #ff0000;
+    --light-teal: #20c4c4;
+    --teal: #249EA0;
+    --med-teal: #008083;
+    --dark-teal: #005F60;
+    --orange: #FAAB36;
+    --med-orange: #F78104;
+    --dark-orange: #FD5900;
+    --red: #FE0202;
     --black: #393939;
     --grey: #3a3a3a;
     --gray: var(--grey)
@@ -30,7 +36,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'radnika_next', ---apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     padding: 0;
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 10px;
     line-height: 2;
   }
   a {

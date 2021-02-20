@@ -20,7 +20,9 @@
     "editor.formatOnSave": false
   },
   "[javascriptreact]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false
   },
   "eslint.alwaysShowStatus": true,
   "editor.codeActionsOnSave": {
@@ -30,5 +32,5 @@
     "javascript",
     "javascriptreact"
   ],
-  "peacock.color": "#FFC600"
+  "peacock.color": "#FFC600",
 }

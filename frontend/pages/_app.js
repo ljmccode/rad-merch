@@ -1,18 +1,37 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import NProgress from 'nprogress';
 import Router from 'next/router';
-import Page from '../components/Page';
 import '../components/styles/nprogress.css';
+import { ApolloProvider } from '@apollo/client';
+import Page from '../components/Page';
+import withData from '../lib/withData';
 
+// Runs loading progress bar
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-export default function myApp({ Component, pageProps }) {
+function myApp({ Component, pageProps, apollo }) {
+  console.log(apollo);
   return (
-    <Page>
-      {/* Component prop is the active page. pageProps is an object with the initial props */}
-      <Component {...pageProps} />
-    </Page>
+    <ApolloProvider client={apollo}>
+      <Page>
+        {/* Component prop is the active page. pageProps is an object with the initial props */}
+        <Component {...pageProps} />
+      </Page>
+    </ApolloProvider>
   );
 }
+
+// next.js async method
+myApp.getInitialProps = async function ({ Component, ctx }) {
+  let pageProps = {};
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
+  // allow us to get any query variables
+  pageProps.query = ctx.query;
+  return { pageProps };
+};
+
+export default withData(myApp);

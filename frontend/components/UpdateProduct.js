@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 
 const SINGLE_PRODUCT_QUERY = gql`
@@ -12,13 +12,44 @@ const SINGLE_PRODUCT_QUERY = gql`
   }
 `;
 
+const UPDATE_PRODUCT_MUTATION = gql`
+  mutation UPDATE_PRODUCT_MUTATION(
+    $id: ID!
+    $name: String
+    $description: String
+    $price: Int
+  ) {
+    updateProduct(
+      id: $id,
+      data {
+        id: $id
+        name: $name
+        description: $description
+        price: $price 
+      }
+    ) {
+      id
+      name
+      description
+      price
+    }
+  }
+  `;
+
 export default function UpdateProduct({ id }) {
   const { data, error, loading } = useQuery(SINGLE_PRODUCT_QUERY, {
     variables: { id },
   });
 
-  console.log(data);
+  const [
+    updateProduct,
+    { data: updateData, error: updateError, loading: updateLoading },
+  ] = useMutation(UPDATE_PRODUCT_MUTATION, {
+    variables: {
+      id,
+      // TODO: Pass in updates to product
+    },
+  });
 
   return <p>Update {id}</p>;
 }
- 

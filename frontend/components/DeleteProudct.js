@@ -10,10 +10,17 @@ const DELETE_PRODUCT_MUTATION = gql`
   }
 `;
 
+function update(cache, payload) {
+  // within payload.data.deleteProduct is the id and name that we asked to get returned
+  // cache.evict removes the prduct with the given id from the cache
+  cache.evict(cache.identify(payload.data.deleteProduct));
+}
+
 export default function DeleteProduct({ id, children }) {
   // deleteProduct is the mutation function
   const [deleteProduct, { loading }] = useMutation(DELETE_PRODUCT_MUTATION, {
     variables: { id },
+    update,
   });
   return (
     <button

@@ -24,7 +24,7 @@ const UPDATE_PRODUCT_MUTATION = gql`
   ) {
     updateProduct(
       id: $id
-      data: { id: $id, name: $name, description: $description, price: $price }
+      data: { name: $name, description: $description, price: $price }
     ) {
       id
       name
@@ -42,12 +42,7 @@ export default function UpdateProduct({ id }) {
   const [
     updateProduct,
     { data: updateData, error: updateError, loading: updateLoading },
-  ] = useMutation(UPDATE_PRODUCT_MUTATION, {
-    variables: {
-      id,
-      // TODO: Pass in updates to product
-    },
-  });
+  ] = useMutation(UPDATE_PRODUCT_MUTATION);
 
   // Create some state for the form inputs
   const { inputs, handleChange, clearForm } = useForm(data?.Product);
@@ -57,15 +52,14 @@ export default function UpdateProduct({ id }) {
     <Form
       onSubmit={async (e) => {
         e.preventDefault();
-        // TODO: Handle Submit
-
-        // Submit the input fields to the backend
-        // const res = await createProduct();
-        // clearForm();
-        // // Go to that product's page
-        // Router.push({
-        //   pathname: `/product/${res.data.createProduct.id}`,
-        // });
+        const res = await updateProduct({
+          variables: {
+            id,
+            name: inputs.name,
+            description: inputs.description,
+            price: inputs.price,
+          },
+        }).catch(console.error);
       }}
     >
       <DisplayError error={error || updateError} />

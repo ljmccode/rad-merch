@@ -1,6 +1,22 @@
 import { gql, useQuery } from '@apollo/client';
 import Head from 'next/head';
+import styled from 'styled-components';
 import DisplayError from './ErrorMessage';
+
+const ProductStyles = styled.div`
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  max-width: var(--maxWidth);
+  justify-content: center;
+  align-items: top;
+  gap: 2rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
 
 const SINGLE_ITEM_QUERY = gql`
   query SINGLE_ITEM_QUERY($id: ID!) {
@@ -29,7 +45,7 @@ export default function SingleProduct({ id }) {
   if (error) return <DisplayError error={error} />;
   const { Product } = data;
   return (
-    <div>
+    <ProductStyles>
       <Head>
         <title>Rad Merch | {Product.name}</title>
       </Head>
@@ -41,6 +57,6 @@ export default function SingleProduct({ id }) {
         <h2>{Product.name}</h2>
         <p>{Product.description}</p>
       </div>
-    </div>
+    </ProductStyles>
   );
 }

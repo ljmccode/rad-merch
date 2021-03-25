@@ -1,2 +1,2 @@
 // imports and exports products page in one line
-export { default } from './product';
+export { default } from './products';

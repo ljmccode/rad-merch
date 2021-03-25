@@ -22,7 +22,7 @@ export const ProductImage = list({
   },
   ui: {
     listView: {
-      initialColumns: ['product', 'altText', 'image']
-    }
-  }
+      initialColumns: ['product', 'altText', 'image'],
+    },
+  },
 });

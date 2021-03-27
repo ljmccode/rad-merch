@@ -6,6 +6,7 @@ export default function paginationField() {
     read(existing = [], { args, cache }) {
       console.log({ existing, args, cache });
       const { skip, first } = args;
+      console.log(first)
 
       // Read number of items on page from the cache
       const data = cache.readQuery({ query: PAGINATION_QUERY });
@@ -16,6 +17,13 @@ export default function paginationField() {
       // Check if we have existing items
       // filter filters out any undefined items
       const items = existing.slice(skip, skip + first).filter((x) => x);
+      // If there are items
+      // AND there aren't enough items to satisfy how many were required
+      // AND we are on the last page
+      // then just send it
+      if (items.length && items.length !== first && page === pages) {
+        return items;
+      }
       if (items.length !== first) {
         // we don't have any items, must go to network to fetch them
         return false;

@@ -33,7 +33,7 @@ export default function Products({ page }) {
     variables: {
       skip: page * perPage - perPage,
       first: perPage,
-    }
+    },
   });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;

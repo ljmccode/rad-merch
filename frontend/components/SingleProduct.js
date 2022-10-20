@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 import styled from 'styled-components';
 import DisplayError from './ErrorMessage';
@@ -53,10 +54,14 @@ export default function SingleProduct({ id }) {
         src={Product.photo.image.publicUrlTransformed}
         alt={Product.photo.image.altText}
       />
-      <div className="details">
+      <div className='details'>
         <h2>{Product.name}</h2>
         <p>{Product.description}</p>
       </div>
     </ProductStyles>
   );
 }
+
+SingleProduct.propTypes = {
+  id: PropTypes.string,
+};

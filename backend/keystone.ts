@@ -59,7 +59,7 @@ export default withAuth(
       isAccessAllowed: ({ session }) => !!session?.data,
     },
     session: withItemData(statelessSessions(sessionConfig), {
-      // GraphQL Query
+      // GraphQL Query, useful for permissions
       User: 'id',
     }),
   })

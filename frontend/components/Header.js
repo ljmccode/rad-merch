@@ -1,9 +1,10 @@
+/* eslint-disable prettier/prettier */
 import Link from 'next/link';
 import styled from 'styled-components';
 import Nav from './Nav';
 
 const Logo = styled.h1`
-  font-size: 4rem;
+  font-size: 2.5rem;
   margin-left: 2rem;
   position: relative;
   z-index: 2;
@@ -36,13 +37,13 @@ const HeaderStyles = styled.header`
 export default function Header() {
   return (
     <HeaderStyles>
-      <div className="bar">
+      <div className='bar'>
         <Logo>
-          <Link href="/">Rad Merch</Link>
+          <Link href='/'>Rad Merch</Link>
         </Logo>
         <Nav />
       </div>
-      <div className="sub-bar">
+      <div className='sub-bar'>
         <p>Search</p>
       </div>
     </HeaderStyles>

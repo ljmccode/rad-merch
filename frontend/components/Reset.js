@@ -1,60 +1,59 @@
 /* eslint-disable prettier/prettier */
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 import useForm from '../lib/useForm';
 import Form from './styles/Form';
 import Error from './ErrorMessage';
 
-const SIGN_UP_MUTATION = gql`
-  mutation SIGNUP_MUTATION(
+const RESET_MUTATION = gql`
+  mutation RESET_MUTATION(
     $email: String!
-    $name: String!
+    $token: String!
     $password: String!
   ) {
-    createUser(data: { email: $email, name: $name, password: $password }) {
-      id
-      email
-      name
+    redeemUserPasswordResetToken(
+      email: $email
+      token: $token
+      password: $password
+    ) {
+      code
+      message
     }
   }
 `;
 
-export default function SignUp() {
+export default function Reset({ token }) {
   const { inputs, handleChange, resetForm } = useForm({
     email: '',
-    name: '',
     password: '',
+    token,
   });
 
-  const [signup, { data, loading, error }] = useMutation(SIGN_UP_MUTATION, {
+  const [reset, { data, loading, error }] = useMutation(RESET_MUTATION, {
     variables: inputs,
   });
 
+  const successfulError = data?.redeemUserPasswordResetToken?.code
+    ? data?.redeemUserPasswordResetToken
+    : undefined;
+
+  console.log(error);
+
   async function handleSubmit(e) {
     e.preventDefault();
-    await signup();
+    await reset();
     resetForm();
   }
 
   return (
     <Form method='POST' onSubmit={handleSubmit}>
-      <h2>Sign Up For an Account</h2>
-      <Error error={error} />
+      <h2>Reset Your Password</h2>
+      <Error error={error || successfulError} />
       <fieldset>
-        {data?.createUser && (
-          <p>Signed up with {data.createUser.email} - You Can Now Sign In!</p>
+        {data?.redeemUserPasswordResetToken === null && (
+          <p>Success! You Can Now Sign In</p>
         )}
-        <label htmlFor='name'>
-          Your Name
-          <input
-            type='name'
-            name='name'
-            placeholder='Your Name'
-            autoComplete='name'
-            value={inputs.name}
-            onChange={handleChange}
-          />
-        </label>
         <label htmlFor='email'>
           Email
           <input
@@ -77,8 +76,12 @@ export default function SignUp() {
             onChange={handleChange}
           />
         </label>
-        <button type='submit'>Sign Up!</button>
+        <button type='submit'>Request Reset</button>
       </fieldset>
     </Form>
   );
 }
+
+Reset.propTypes = {
+  token: PropTypes.string,
+};

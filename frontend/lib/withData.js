@@ -23,7 +23,8 @@ function createClient({ headers, initialState }) {
             `[Network error]: ${networkError}. Backend is unreachable. Is it running?`
           );
       }),
-      // this uses apollo-link-http under the hood, but layered on additional code that allows us to do file uploads
+      // createUploadLink uses apollo-link-http under the hood, but layered on additional code that allows us to do file uploads
+      // responsible for fetching data or making post requests
       createUploadLink({
         uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
         // whenever it fetches data from GraphQL endpoint it should send cookies
@@ -38,7 +39,6 @@ function createClient({ headers, initialState }) {
       typePolicies: {
         Query: {
           fields: {
-            // TODO: We will add this together!
             allProducts: paginationField(),
           },
         },
@@ -49,4 +49,5 @@ function createClient({ headers, initialState }) {
   });
 }
 
+// allows us to crawl all of our pages and components and look for any queries and it will make sure we have fetched before server sends HTML from server to client
 export default withApollo(createClient, { getDataFromTree });

@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { perPage } from '../config';
 import Product from './Product';
 
@@ -28,7 +29,6 @@ const ProductsListStyles = styled.div`
 `;
 
 export default function Products({ page }) {
-  // returns data, any errors and if it is currently loading
   const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY, {
     variables: {
       skip: page * perPage - perPage,
@@ -40,10 +40,14 @@ export default function Products({ page }) {
   return (
     <div>
       <ProductsListStyles>
-        {data.allProducts.map((product) => (
+        {data?.allProducts.map((product) => (
           <Product key={product.id} product={product} />
         ))}
       </ProductsListStyles>
     </div>
   );
 }
+
+Products.propTypes = {
+  page: PropTypes.number,
+};

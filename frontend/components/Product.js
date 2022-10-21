@@ -1,4 +1,6 @@
+/* eslint-disable prettier/prettier */
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import ItemStyles from './styles/ItemStyles';
 import Title from './styles/Title';
 import PriceTag from './styles/PriceTag';
@@ -18,7 +20,7 @@ export default function Product({ product }) {
       <PriceTag>{formatMoney(product.price)}</PriceTag>
       <p>{product.description}</p>
       {/* TODO: Add buttons to edit and delete items */}
-      <div className="buttonList">
+      <div className='buttonList'>
         <Link
           href={{
             pathname: '/update',
@@ -34,3 +36,7 @@ export default function Product({ product }) {
     </ItemStyles>
   );
 }
+
+Product.propTypes = {
+  product: PropTypes.object,
+};

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
 export default function useForm(initialState = {}) {
-  // create a state object for our inputs
   const [inputs, setInputs] = useState(initialState);
   const initialValues = Object.values(initialState).join('');
 
   useEffect(() => {
     setInputs(initialState);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialValues]);
 
   function handleChange(e) {
@@ -18,7 +18,6 @@ export default function useForm(initialState = {}) {
       [value] = e.target.files;
     }
     setInputs({
-      // copy the existing state
       ...inputs,
       [name]: value,
     });
@@ -35,7 +34,6 @@ export default function useForm(initialState = {}) {
     setInputs(blankState);
   }
 
-  // return the things we want to surface from this custom hook
   return {
     inputs,
     handleChange,

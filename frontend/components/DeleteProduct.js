@@ -1,5 +1,7 @@
+/* eslint-disable prettier/prettier */
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 
 const DELETE_PRODUCT_MUTATION = gql`
   mutation DELETE_PRODUCT_MUTATION($id: ID!) {
@@ -11,23 +13,21 @@ const DELETE_PRODUCT_MUTATION = gql`
 `;
 
 function update(cache, payload) {
-  // within payload.data.deleteProduct is the id and name that we asked to get returned
-  // cache.evict removes the prduct with the given id from the cache
+  // cache.evict removes the product with the given id from the cache
   cache.evict(cache.identify(payload.data.deleteProduct));
 }
 
 export default function DeleteProduct({ id, children }) {
-  // deleteProduct is the mutation function
   const [deleteProduct, { loading }] = useMutation(DELETE_PRODUCT_MUTATION, {
     variables: { id },
     update,
   });
   return (
     <button
-      type="button"
+      type='button'
       disabled={loading}
       onClick={() => {
-        if (confirm('Are you sure you want to delete this item')) {
+        if (window.confirm('Are you sure you want to delete this item')) {
           console.log('deleting');
           deleteProduct().catch((err) => alert(err.message));
         }
@@ -37,3 +37,8 @@ export default function DeleteProduct({ id, children }) {
     </button>
   );
 }
+
+DeleteProduct.propTypes = {
+  id: PropTypes.string,
+  children: PropTypes.any,
+};

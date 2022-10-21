@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 import Link from 'next/link';
 import styled from 'styled-components';
+import Cart from './Cart';
 import Nav from './Nav';
 
 const Logo = styled.h1`
-  font-size: 2.5rem;
+  font-size: 4rem;
   margin-left: 2rem;
   position: relative;
   z-index: 2;
@@ -46,6 +47,7 @@ export default function Header() {
       <div className='sub-bar'>
         <p>Search</p>
       </div>
+      <Cart />
     </HeaderStyles>
   );
 }

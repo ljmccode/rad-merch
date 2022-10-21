@@ -5,6 +5,7 @@ import '../components/styles/nprogress.css';
 import { ApolloProvider } from '@apollo/client';
 import Page from '../components/Page';
 import withData from '../lib/withData';
+import { CartStateProvider } from '../lib/cartState';
 
 // Runs loading progress bar
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -14,10 +15,12 @@ Router.events.on('routeChangeError', () => NProgress.done());
 function myApp({ Component, pageProps, apollo }) {
   return (
     <ApolloProvider client={apollo}>
-      <Page>
-        {/* Component prop is the active page. pageProps is an object with the initial props */}
-        <Component {...pageProps} />
-      </Page>
+      <CartStateProvider>
+        <Page>
+          {/* Component prop is the active page. pageProps is an object with the initial props */}
+          <Component {...pageProps} />
+        </Page>
+      </CartStateProvider>
     </ApolloProvider>
   );
 }

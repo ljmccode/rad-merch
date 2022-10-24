@@ -12,6 +12,8 @@ import nProgress from 'nprogress';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/dist/client/router';
 import { useCart } from '../lib/cartState';
+import { CURRENT_USER_QUERY } from './User';
+
 import RadButton from './styles/SickButton';
 
 const CheckoutFormStyles = styled.form`
@@ -47,7 +49,10 @@ function CheckoutForm() {
   const router = useRouter();
   const { closeCart } = useCart();
   const [checkout, { error: graphQLError }] = useMutation(
-    CREATE_ORDER_MUTATION
+    CREATE_ORDER_MUTATION,
+    {
+      refetchQueries: [{ query: CURRENT_USER_QUERY }],
+    }
   );
 
   async function handleSubmit(e) {
@@ -58,7 +63,6 @@ function CheckoutForm() {
       type: 'card',
       card: elements.getElement(CardElement),
     });
-    console.log(paymentMethod);
     if (error) {
       setError(error);
       nProgress.done();
@@ -69,8 +73,6 @@ function CheckoutForm() {
         token: paymentMethod.id,
       },
     });
-    console.log('Finished with the order!');
-    console.log({ order });
     router.push({
       pathname: '/order',
       query: { id: order.data.checkout.id },

@@ -1,3 +1,5 @@
+import { OrderItem } from './schemas/OrderItem';
+import { Order } from './schemas/Order';
 import { extendGraphqlSchema } from './mutations/index';
 import { CartItem } from './schemas/CartItem';
 import { createAuth } from '@keystone-next/auth';
@@ -63,6 +65,8 @@ export default withAuth(
       Product,
       ProductImage,
       CartItem,
+      OrderItem,
+      Order,
     }),
     extendGraphqlSchema,
     ui: {

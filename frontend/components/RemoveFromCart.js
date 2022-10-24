@@ -23,7 +23,6 @@ const REMOVE_FROM_CART_MUTATION = gql`
 `;
 
 function update(cache, payload) {
-  console.log(payload);
   cache.evict({ id: cache.identify(payload.data.deleteCartItem) });
 }
 

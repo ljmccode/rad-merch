@@ -4,6 +4,7 @@ import formatMoney from '../lib/formatMoney';
 
 export const Order = list({
   fields: {
+    // what we view in KeyStone CMS instead of Id
     label: virtual({
       graphQLReturnType: 'String',
       resolver: function (item) {

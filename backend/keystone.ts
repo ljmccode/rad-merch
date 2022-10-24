@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { OrderItem } from './schemas/OrderItem';
 import { Order } from './schemas/Order';
 import { extendGraphqlSchema } from './mutations/index';
@@ -11,7 +12,6 @@ import {
 import { User } from './schemas/User';
 import { Product } from './schemas/Products';
 import { ProductImage } from './schemas/ProductImage';
-import 'dotenv/config';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
 

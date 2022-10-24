@@ -79,7 +79,7 @@ async function checkout(
       user: { connect: { id: userId } },
     },
   });
-  const cartItemIds = cartItems.map((cartItem) => cartItem.id);
+  const cartItemIds = user.cart.map((cartItem) => cartItem.id);
   // delete existing cart items
   await context.lists.CartItem.deleteMany({
     ids: cartItemIds,

@@ -1,20 +1,21 @@
-import { Role } from './schemas/Roles';
 import 'dotenv/config';
-import { OrderItem } from './schemas/OrderItem';
-import { Order } from './schemas/Order';
-import { extendGraphqlSchema } from './mutations/index';
-import { CartItem } from './schemas/CartItem';
 import { createAuth } from '@keystone-next/auth';
 import { config, createSchema } from '@keystone-next/keystone/schema';
 import {
   withItemData,
   statelessSessions,
 } from '@keystone-next/keystone/session';
+import { OrderItem } from './schemas/OrderItem';
+import { Order } from './schemas/Order';
+import { extendGraphqlSchema } from './mutations/index';
+import { CartItem } from './schemas/CartItem';
+import { Role } from './schemas/Role';
 import { User } from './schemas/User';
-import { Product } from './schemas/Products';
+import { Product } from './schemas/Product';
 import { ProductImage } from './schemas/ProductImage';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
+import { permissionsList } from './schemas/fields';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-rad-merch';
@@ -77,7 +78,7 @@ export default withAuth(
     },
     session: withItemData(statelessSessions(sessionConfig), {
       // GraphQL Query, useful for permissions
-      User: 'id',
+      User: `id name email role { ${permissionsList.join(' ')} }`,
     }),
   })
 );

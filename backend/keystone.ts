@@ -1,3 +1,4 @@
+import { Role } from './schemas/Roles';
 import 'dotenv/config';
 import { OrderItem } from './schemas/OrderItem';
 import { Order } from './schemas/Order';
@@ -67,6 +68,7 @@ export default withAuth(
       CartItem,
       OrderItem,
       Order,
+      Role,
     }),
     extendGraphqlSchema,
     ui: {

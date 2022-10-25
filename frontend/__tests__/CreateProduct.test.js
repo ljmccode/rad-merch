@@ -5,7 +5,7 @@ import Router from 'next/router';
 import CreateProduct, {
   CREATE_PRODUCT_MUTATION,
 } from '../components/CreateProduct';
-import { fakeItem, makePaginationMocksFor } from '../lib/testUtils';
+import { fakeItem } from '../lib/testUtils';
 import { ALL_PRODUCTS_QUERY } from '../components/Products';
 import wait from 'waait';
 

@@ -22,7 +22,7 @@ export default function Pagination({ page }) {
   const { count } = data._allProductsMeta;
   const pageCount = Math.ceil(count / perPage);
   return (
-    <PaginationStyles>
+    <PaginationStyles data-testid="pagination">
       <Head>
         <title>
           Rad Merch - Page {page} of {pageCount}

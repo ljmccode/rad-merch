@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { gql, useQuery } from '@apollo/client';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
@@ -46,7 +47,7 @@ export default function SingleProduct({ id }) {
   if (error) return <DisplayError error={error} />;
   const { Product } = data;
   return (
-    <ProductStyles>
+    <ProductStyles data-testid="singleProduct">
       <Head>
         <title>Rad Merch | {Product.name}</title>
       </Head>
@@ -54,7 +55,7 @@ export default function SingleProduct({ id }) {
         src={Product.photo.image.publicUrlTransformed}
         alt={Product.photo.image.altText}
       />
-      <div className='details'>
+      <div className="details">
         <h2>{Product.name}</h2>
         <p>{Product.description}</p>
       </div>
@@ -65,3 +66,5 @@ export default function SingleProduct({ id }) {
 SingleProduct.propTypes = {
   id: PropTypes.string,
 };
+
+export { SINGLE_ITEM_QUERY };

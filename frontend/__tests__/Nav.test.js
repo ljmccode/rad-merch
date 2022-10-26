@@ -33,7 +33,7 @@ const signedInMocksWithCartItems = [
 ];
 
 describe('<Nav/>', () => {
-  it('renders and minial nav when signed out', () => {
+  it('renders and minimal nav when signed out', () => {
     const { container, debug } = render(
       <CartStateProvider>
         <MockedProvider mocks={notSignedInMocks}>

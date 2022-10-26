@@ -20,7 +20,6 @@ describe('<Pagination/>', () => {
       </MockedProvider>
     );
     await screen.findByTestId('pagination');
-    debug();
     expect(container).toHaveTextContent('Page 1 of 3');
     expect(container).toMatchSnapshot();
   });

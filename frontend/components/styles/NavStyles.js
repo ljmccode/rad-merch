@@ -18,7 +18,7 @@ const NavStyles = styled.ul`
     background: none;
     border: 0;
     cursor: pointer;
-    @media (max-width: 700px) {
+    @media (max-width: 740px) {
       font-size: 12px;
       padding: 0 10px;
     }
@@ -55,7 +55,7 @@ const NavStyles = styled.ul`
       &:after {
         width: calc(100% - 60px);
       }
-      @media (max-width: 700px) {
+      @media (max-width: 740px) {
         &:after {
           width: calc(100% - 14px);
         }

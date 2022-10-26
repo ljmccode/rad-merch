@@ -27,7 +27,7 @@ const ProductsListStyles = styled.div`
   grid-template-columns: 1fr;
   grid-gap: 30px;
 
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: 700px) {
     grid-template-columns: 1fr 1fr;
     grid-gap: 60px;
   }

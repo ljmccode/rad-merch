@@ -3,7 +3,7 @@
 exports[`<Nav/> renders a full nav when signed in 1`] = `
 <div>
   <ul
-    class="NavStyles-sc-11c0d2g-0 dgtOLB"
+    class="NavStyles-sc-11c0d2g-0 iYtVAG"
   >
     <a
       href="/products"
@@ -35,7 +35,7 @@ exports[`<Nav/> renders a full nav when signed in 1`] = `
     >
       My Cart
       <span
-        class="CartCount__AnimationStyles-sc-xxvp4g-1 aGtVy"
+        class="CartCount__AnimationStyles-sc-xxvp4g-1 ChrsG"
       >
         <div>
           <div
@@ -53,7 +53,7 @@ exports[`<Nav/> renders a full nav when signed in 1`] = `
 exports[`<Nav/> renders and minimal nav when signed out 1`] = `
 <div>
   <ul
-    class="NavStyles-sc-11c0d2g-0 dgtOLB"
+    class="NavStyles-sc-11c0d2g-0 iYtVAG"
   >
     <a
       href="/products"
@@ -72,7 +72,7 @@ exports[`<Nav/> renders and minimal nav when signed out 1`] = `
 exports[`<Nav/> renders the amount of items in the cart 1`] = `
 <div>
   <ul
-    class="NavStyles-sc-11c0d2g-0 dgtOLB"
+    class="NavStyles-sc-11c0d2g-0 iYtVAG"
   >
     <a
       href="/products"
@@ -104,7 +104,7 @@ exports[`<Nav/> renders the amount of items in the cart 1`] = `
     >
       My Cart
       <span
-        class="CartCount__AnimationStyles-sc-xxvp4g-1 aGtVy"
+        class="CartCount__AnimationStyles-sc-xxvp4g-1 ChrsG"
       >
         <div>
           <div

@@ -3,7 +3,7 @@
 exports[`<Product/> Renders and matches the snapshot 1`] = `
 <div>
   <div
-    class="ItemStyles-sc-16pk14u-0 jMVHFW"
+    class="ItemStyles-sc-16pk14u-0 gWcJYx"
   >
     <img
       alt="dogs are best"
@@ -29,21 +29,11 @@ exports[`<Product/> Renders and matches the snapshot 1`] = `
     <div
       class="buttonList"
     >
-      <a
-        href="/update?id=abc123"
-      >
-        Edit
-      </a>
       <button
         type="button"
       >
         Add
          To Cart
-      </button>
-      <button
-        type="button"
-      >
-        Delete
       </button>
     </div>
   </div>

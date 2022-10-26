@@ -37,6 +37,7 @@ const OrderUl = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-gap: 4rem;
+  padding: 0;
 `;
 
 function countItemsInAnOrder(order) {
@@ -59,7 +60,7 @@ export default function OrdersPage() {
           <OrderItemStyles key={order.id}>
             <Link href={`/order/${order.id}`}>
               <a>
-                <div className='order-meta'>
+                <div className="order-meta">
                   <p>{countItemsInAnOrder(order)} Items</p>
                   <p>
                     {order.items.length} Product
@@ -67,7 +68,7 @@ export default function OrdersPage() {
                   </p>
                   <p>{formatMoney(order.total)}</p>
                 </div>
-                <div className='images'>
+                <div className="images">
                   {order.items.map((item) => (
                     <img
                       key={item.id}

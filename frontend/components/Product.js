@@ -7,8 +7,15 @@ import PriceTag from './styles/PriceTag';
 import formatMoney from '../lib/formatMoney';
 import DeleteProduct from './DeleteProduct';
 import AddToCart from './AddToCart';
+import { useUser } from './User';
 
 export default function Product({ product }) {
+  const me = useUser();
+
+  function belongsToUser() {
+    return me.products.find((userProduct) => userProduct.id === product.id);
+  }
+
   return (
     <ItemStyles>
       <img
@@ -20,20 +27,23 @@ export default function Product({ product }) {
       </Title>
       <PriceTag>{formatMoney(product.price)}</PriceTag>
       <p>{product.description}</p>
-      {/* TODO: Add buttons to edit and delete items */}
-      <div className='buttonList'>
-        <Link
-          href={{
-            pathname: '/update',
-            query: {
-              id: product.id,
-            },
-          }}
-        >
-          Edit
-        </Link>
-        <AddToCart id={product.id} />
-        <DeleteProduct id={product.id}>Delete</DeleteProduct>
+      <div className="buttonList">
+        <AddToCart id={product.id} user={me} />
+        {me && belongsToUser() && (
+          <>
+            <Link
+              href={{
+                pathname: '/update',
+                query: {
+                  id: product.id,
+                },
+              }}
+            >
+              Edit
+            </Link>
+            <DeleteProduct id={product.id}>Delete</DeleteProduct>
+          </>
+        )}
       </div>
     </ItemStyles>
   );

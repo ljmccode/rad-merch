@@ -14,6 +14,7 @@ const Dot = styled.div`
 `;
 
 const AnimationStyles = styled.span`
+  display: none;
   position: relative;
   .count {
     display: block;
@@ -35,6 +36,10 @@ const AnimationStyles = styled.span`
   .count-exit-active {
     transform: scale(4) rotateX(0.5turn);
   }
+
+  @media screen and (min-width: 778px) {
+    display: block;
+  }
 `;
 
 export default function CartCount({ count }) {
@@ -43,8 +48,8 @@ export default function CartCount({ count }) {
       <TransitionGroup>
         <CSSTransition
           unmountOnExit
-          className='count'
-          classNames='count'
+          className="count"
+          classNames="count"
           key={count}
           timeout={{ enter: 400, exit: 400 }}
         >

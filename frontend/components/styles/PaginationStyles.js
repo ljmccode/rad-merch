@@ -10,9 +10,10 @@ const PaginationStyles = styled.div`
   margin: 2rem 0;
   border: 1px solid var(--lightGray);
   border-radius: 10px;
+
   & > * {
     margin: 0;
-    padding: 15px 30px;
+    padding: 10px 20px;
     border-right: 1px solid var(--lightGray);
     &:last-child {
       border-right: 0;
@@ -21,6 +22,19 @@ const PaginationStyles = styled.div`
   a[aria-disabled='true'] {
     color: grey;
     pointer-events: none;
+  }
+
+  .total-items {
+    display: none;
+  }
+
+  @media screen and (min-width: 668px) {
+    .total-items {
+      display: inline-grid;
+    }
+    & > * {
+      padding: 15px 30px;
+    }
   }
 `;
 

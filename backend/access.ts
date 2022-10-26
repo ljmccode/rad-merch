@@ -30,9 +30,6 @@ export const rules = {
     return { user: { id: session.itemId } };
   },
   canReadProducts({ session }) {
-    if (!isSignedIn({ session })) {
-      return false;
-    }
     // only show products that are available unless you manage products
     if (permissions.canManageProducts({ session })) {
       return true;

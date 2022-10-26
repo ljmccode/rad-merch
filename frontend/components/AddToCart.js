@@ -12,14 +12,19 @@ export const ADD_TO_CART_MUTATION = gql`
   }
 `;
 
-export default function AddToCart({ id }) {
+export default function AddToCart({ id, user }) {
   const [addToCart, { loading }] = useMutation(ADD_TO_CART_MUTATION, {
     variables: { id },
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    !user ? alert('Please sign in to add to cart!') : await addToCart();
+  }
+
   return (
-    <button disabled={loading} type="button" onClick={addToCart}>
+    <button disabled={loading} type="button" onClick={handleSubmit}>
       Add{loading && 'ing'} To Cart
     </button>
   );

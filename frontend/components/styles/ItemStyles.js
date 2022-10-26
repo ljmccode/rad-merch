@@ -29,8 +29,17 @@ const ItemStyles = styled.div`
     & > * {
       background: white;
       border: 0;
-      font-size: 1rem;
+      font-size: 1.5rem;
       padding: 1rem;
+    }
+    a {
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    & > * {
+      font-size: 1.25rem;
     }
   }
 `;

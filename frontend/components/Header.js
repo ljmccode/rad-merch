@@ -7,16 +7,22 @@ import Search from './Search';
 
 const Logo = styled.h1`
   font-size: 4rem;
-  margin-left: 2rem;
+  margin: 0;
+  text-align: center;
   position: relative;
   z-index: 2;
   background: var(--light-teal);
-  transform: skew(-7deg);
+
   a {
     color: white;
     text-decoration: none;
     text-transform: uppercase;
     padding: 0.5rem 1rem;
+  }
+
+  @media screen and (min-width: 998px) {
+    transform: skew(-7deg);
+    margin-left: 2rem;
   }
 `;
 
@@ -24,8 +30,7 @@ const HeaderStyles = styled.header`
   .bar {
     border-bottom: 10px solid var(--black, black);
     display: grid;
-    grid-template-columns: auto 1fr;
-    justify-content: space-between;
+    justify-content: stretch;
     align-items: stretch;
   }
 
@@ -34,18 +39,25 @@ const HeaderStyles = styled.header`
     grid-template-columns: 1fr auto;
     border-bottom: 1px solid var(--black, black);
   }
+
+  @media screen and (min-width: 998px) {
+    .bar {
+      grid-template-columns: auto 1fr;
+      justify-content: space-between;
+    }
+  }
 `;
 
 export default function Header() {
   return (
     <HeaderStyles>
-      <div className='bar'>
+      <div className="bar">
         <Logo>
-          <Link href='/'>Rad Merch</Link>
+          <Link href="/">Rad Merch</Link>
         </Logo>
         <Nav />
       </div>
-      <div className='sub-bar'>
+      <div className="sub-bar">
         <Search />
       </div>
       <Cart />

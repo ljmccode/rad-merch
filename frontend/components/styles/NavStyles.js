@@ -62,6 +62,7 @@ const NavStyles = styled.ul`
     width: 100%;
     justify-content: center;
     font-size: 1.5rem;
+    min-height: 60px;
   }
 `;
 

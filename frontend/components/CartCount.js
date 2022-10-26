@@ -37,7 +37,7 @@ const AnimationStyles = styled.span`
     transform: scale(4) rotateX(0.5turn);
   }
 
-  @media screen and (min-width: 500px) {
+  @media screen and (min-width: 778px) {
     display: block;
   }
 `;

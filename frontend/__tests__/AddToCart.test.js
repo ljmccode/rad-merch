@@ -37,7 +37,7 @@ describe('<AddToCart />', () => {
   it('renders and matched snapshot', () => {
     const { container } = render(
       <MockedProvider>
-        <AddToCart id={'abc123'} />
+        <AddToCart id={'abc123'} user={me} />
       </MockedProvider>
     );
     expect(container).toMatchSnapshot();
@@ -46,7 +46,7 @@ describe('<AddToCart />', () => {
   it('disables add to cart button and updates text while loading', async () => {
     const { container, debug } = render(
       <MockedProvider mocks={mocks}>
-        <AddToCart id="abc123" />
+        <AddToCart id="abc123" user={me} />
       </MockedProvider>
     );
     await userEvent.click(screen.getByText(/Add To Cart/i));
@@ -58,7 +58,7 @@ describe('<AddToCart />', () => {
   it('returns to not being disabled after mutation', async () => {
     const { container, debug } = render(
       <MockedProvider mocks={mocks}>
-        <AddToCart id="abc123" />
+        <AddToCart id="abc123" user={me} />
       </MockedProvider>
     );
     await userEvent.click(screen.getByText(/Add To Cart/i));

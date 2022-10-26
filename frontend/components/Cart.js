@@ -31,7 +31,7 @@ function CartItem({ cartItem }) {
   return (
     <CartItemStyles>
       <img
-        width='100'
+        width="100"
         src={product.photo.image.publicUrlTransformed}
         alt={product.name}
       />
@@ -57,7 +57,7 @@ export default function Cart() {
     <CartStyles open={cartOpen}>
       <header>
         <Supreme>{me.name}'s Cart</Supreme>
-        <CloseButton type='button' onClick={closeCart}>
+        <CloseButton type="button" onClick={closeCart}>
           &times;
         </CloseButton>
       </header>

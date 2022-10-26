@@ -34,14 +34,12 @@ export default function SignIn() {
     variables: inputs,
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
+  console.log(data);
 
   async function handleSubmit(e) {
     e.preventDefault();
     await signin().catch(console.error);
     resetForm();
-    Router.push({
-      pathname: `/products`,
-    });
   }
 
   const error =

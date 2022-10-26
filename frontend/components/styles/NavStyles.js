@@ -19,8 +19,11 @@ const NavStyles = styled.ul`
     border: 0;
     cursor: pointer;
     @media (max-width: 700px) {
-      font-size: 10px;
+      font-size: 12px;
       padding: 0 10px;
+    }
+    @media (max-width: 500px) {
+      font-size: 10px;
     }
     &:before {
       content: '';
@@ -53,7 +56,9 @@ const NavStyles = styled.ul`
         width: calc(100% - 60px);
       }
       @media (max-width: 700px) {
-        width: calc(100% - 10px);
+        &:after {
+          width: calc(100% - 14px);
+        }
       }
     }
   }

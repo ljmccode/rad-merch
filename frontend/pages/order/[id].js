@@ -59,11 +59,11 @@ export default function SingleOrderPage({ query }) {
         <span>Item Count:</span>
         <span>{order.items.length}</span>
       </p>
-      <div className='items'>
+      <div className="items">
         {order.items.map((item) => (
-          <div className='order-item' key={item.id}>
+          <div className="order-item" key={item.id}>
             <img src={item.photo.image.publicUrlTransformed} alt={item.title} />
-            <div className='item-details'>
+            <div className="item-details">
               <h2>{item.name}</h2>
               <p>Qty: {item.quantity}</p>
               <p>Each: {formatMoney(item.price)}</p>

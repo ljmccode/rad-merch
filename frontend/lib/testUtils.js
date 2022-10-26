@@ -29,6 +29,7 @@ const fakeUser = (overrides) => ({
   permissions: ['ADMIN'],
   orders: [],
   cart: [],
+  products: [],
   ...overrides,
 });
 

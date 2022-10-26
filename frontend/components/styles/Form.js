@@ -28,9 +28,10 @@ const Form = styled.form`
   textarea,
   select {
     width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
     border: 1px solid black;
+    margin-top: 0.5rem;
     &:focus {
       outline: 0;
       border-color: var(--dark-orange);
@@ -57,6 +58,7 @@ const Form = styled.form`
       height: 10px;
       content: '';
       display: block;
+      margin-bottom: 1rem;
       background-image: linear-gradient(
         to right,
         #ff3019 0%,

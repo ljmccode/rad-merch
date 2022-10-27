@@ -22,3 +22,4 @@ Rad Merch is a trendy new store that allows you to buy and sell your favorite pr
 
 * Keystone.js
 * MongoDB
+* TypeScript
